@@ -13,7 +13,7 @@ const Stock = (props) => {
         const data = await response.json()
         console.log(data.result[0].regularMarketPrice)
         setPrice(data.result[0].regularMarketPrice)
-    }
+    
 
     useEffect(()=> {
         data()
