@@ -1,0 +1,28 @@
+.Nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: red;
+}
+
+.header {
+    justify-content: flex-start;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.Nav * {
+    padding: 10px;
+}
