@@ -2,9 +2,11 @@ import {Route} from 'react-router-dom'
 import Nav from './Nav'
 import About from '../pages/About'
 import Home from '../pages/Home'
+import Stock from '../pages/Stock'
 
 const Main = (props) => {
-    console.log(props.user)
+    
+
     return(
         <div className="Main">
             <Nav user={props.user} />
@@ -14,6 +16,12 @@ const Main = (props) => {
             <Route path='/about'>
                 <About />
             </Route>
+            <Route path='/stock/:symbol' render={(rp) => (
+                <Stock
+                    {...rp}
+                    />
+
+            )} />
         </div>
     )
 }

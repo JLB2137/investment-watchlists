@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 
-const Home = () => {
-
+const Stock = (props) => {
+    
     const [price, setPrice] = useState(null) //.regularMarketPrice
     const [quoteSource, setQuoteSource] = useState(null) //.dividendsPerShare
     const [dividends, setDividends] = useState(null) //.dividendsPerShare
@@ -9,9 +9,10 @@ const Home = () => {
     const [volume, setVolume] = useState(null) //.regularMarketVolume
 
     const data = async () => {
-        const response = await fetch('http://localhost:3001/')
+        const response = await fetch(`http://localhost:3001/stock/${props.match.params.symbol}`)
         const data = await response.json()
-        setPrice(data.regularMarketPrice)
+        console.log(data.result[0].regularMarketPrice)
+        setPrice(data.result[0].regularMarketPrice)
     }
 
     useEffect(()=> {
@@ -42,4 +43,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Stock
