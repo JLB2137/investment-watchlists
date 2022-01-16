@@ -15,6 +15,9 @@ const Nav = (props) => {
                 <Link to='/'>
                     <h3>Home</h3>
                 </Link>
+                <Link to='/search'>
+                    <h3>Search</h3>
+                </Link>
             </div>
             {
                 props.user ?
