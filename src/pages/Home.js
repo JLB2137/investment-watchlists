@@ -2,13 +2,7 @@ import {useState,useEffect} from 'react'
 
 const Home = (props) => {
 
-    const [symbol, setSymbol] = useState(null) //.symbol
-    const [price, setPrice] = useState(null) //.regularMarketPrice
-    const [quoteSource, setQuoteSource] = useState(null) //.quoteSourceName
-    const [dividends, setDividends] = useState(null) //.dividendsPerShare
-    const [percentChange, setPercentChange] = useState(null) //.regularMarketChangePercent
-    const [volume, setVolume] = useState(null) //.regularMarketVolume
-    const [name, setName] = useState(null) //.longName
+    const [stock, setStock] = useState(null) //.symbol
 
     
 
@@ -16,13 +10,16 @@ const Home = (props) => {
         const response = await fetch('https://investment-watchlists-backend.herokuapp.com/')
         const data = await response.json()
         const stockData = await props.responseLengthCheck(data)
-        setQuoteSource(stockData.quoteSourceName)
-        setDividends(stockData.dividendsPerShare)
-        setPercentChange(stockData.regularMarketChangePercent)
-        setVolume(stockData.regularMarketVolume)
-        setName(stockData.longName)
-        setSymbol(stockData.symbol)
-        setPrice(stockData.regularMarketPrice)
+        setStock({
+            quoteSourceName: stockData.quoteSourceName,
+            dividendsPerShare: stockData.dividendsPerShare,
+            regularMarketChangePercent: stockData.regularMarketChangePercent,
+            regularMarketVolume: stockData.regularMarketVolume,
+            longName: stockData.longName,
+            symbol: stockData.symbol,
+            regularMarketPrice: stockData.regularMarketPrice
+        })
+        props.watchlistNaming(props.user)
     }
 
     useEffect(()=> {
@@ -33,14 +30,14 @@ const Home = (props) => {
         return(
             <div className='home'>
                 <h1>Weclome to the Stock Watchlist App!</h1>
-                <h5>Example Ticker: TSLA</h5>
-                <h1>Name: {name}</h1>
-                <p>Ticker: {symbol}</p>
-                <p>Quote Source (Exchange): {quoteSource}</p>
-                <p>Dividends: {dividends}</p>
-                <p>Price: ${price}</p>
-                <p>Daily Percent Change: {percentChange}%</p>
-                <p>Daily Volume: {volume} Orders</p>
+                <h3>Example Ticker: TSLA</h3>
+                <h5>Name: {stock.longName}</h5>
+                <p>Ticker: {stock.symbol}</p>
+                <p>Quote Source: {stock.quoteSourceName}</p>
+                <p>Dividends: {stock.dividendsPerShare}</p>
+                <p>Price: ${stock.regularMarketPrice}</p>
+                <p>Daily Percent Change: {stock.regularMarketChangePercent}%</p>
+                <p>Daily Volume: {stock.regularMarketVolume} Orders</p>
             </div>
         )
     }
@@ -54,7 +51,7 @@ const Home = (props) => {
     return(
         <div>
             {
-                price ?
+                stock ?
                 loaded()
                 :
                 loading() 
