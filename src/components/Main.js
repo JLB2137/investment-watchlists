@@ -21,13 +21,15 @@ const Main = (props) => {
             return(data.result[0])
         } else if (data.language) {
             return(data)
+        } else if (data.quoteResponse) {
+            return(data.quoteResponse.result[0])
         }
     }
 
     //grabs the custom name of the watchlist by the user
     //sends this prop to other pages
     const watchlistNaming = async () => {
-        let response = await fetch(`http://localhost:3001/watchlistNaming/${props.user.uid}`)
+        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${props.user.uid}`)
         response = await response.json()
         const name = await response[0].watchlistName
         const ID = await response[0]._id

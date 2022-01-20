@@ -1,0 +1,43 @@
+.stockSearch {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 150px 400px 400px 400px;
+}
+
+.stockHeader {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    margin: auto;
+    text-align: center;
+}
+
+.dailyInfo {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    margin: 0 auto;
+}
+
+.preMarketInfo {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    margin: 0 auto;
+}
+
+.bookInfo {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    margin: 0 auto;
+}
+
+.tradingInfo {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    margin: 0 auto;
+}
+
+.buttonInfo {
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 1;
+    margin: 40px auto;
+}

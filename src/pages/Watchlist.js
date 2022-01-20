@@ -22,7 +22,7 @@ const Watchlist = (props) => {
 
     const removeFromWatchlist = async (tickerID,symbol) => {
         setReady(null)
-        await fetch(`http://localhost:3001/post/${tickerID}`, {
+        await fetch(`https://investment-watchlists-backend.herokuapp.com/post/${tickerID}`, {
             method: "DELETE"
         })
         removeSymbolFromState(symbol)
@@ -41,7 +41,7 @@ const Watchlist = (props) => {
         evt.preventDefault()
         if (props.watchlistName === null) {
             //if a new name hasn't been created add it using post
-            await fetch(`http://localhost:3001/watchlistNaming/${props.user.uid}`, {
+            await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${props.user.uid}`, {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -56,7 +56,7 @@ const Watchlist = (props) => {
             //saved watchlist name
             props.watchlistNaming()
         } else {
-            await fetch(`http://localhost:3001/watchlistNaming/rename/${props.watchlistNameID}`, {
+            await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/rename/${props.watchlistNameID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "Application/json"
@@ -74,10 +74,10 @@ const Watchlist = (props) => {
     
 
     const data = async () => {
-        const response = await fetch(`http://localhost:3001/watchlist/${props.user.uid}`)
+        const response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlist/${props.user.uid}`)
         const data = await response.json()
         data.forEach(async (stock) => {
-            let stockResponse = await fetch(`http://localhost:3001/stock/${stock.symbol}`)
+            let stockResponse = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${stock.symbol}`)
             let stockData = await stockResponse.json()
             stockData = stockData.result[0]
             stockData = {
@@ -104,10 +104,15 @@ const Watchlist = (props) => {
     const loaded = () => {
         const listOfStocks = stockList.map((stock) => {
             return(
-                <div className='watchlist'>
+                <div className='watchlistStock'>
                     <Link to={`/stock/${stock.symbol}`}>
                         <h5>{stock.symbol}</h5>
                     </Link>
+                    <p>{stock.longName}</p>
+                    <p>Quote Source: {stock.quoteSourceName}</p>
+                    <p>Price: ${stock.regularMarketPrice}</p>
+                    <p>Daily Percent Change: {stock.regularMarketChangePercent}%</p>
+                    <p>Daily Volume: {stock.regularMarketVolume} Orders</p>
                     <button onClick={()=> removeFromWatchlist(stock.MONGO_ID,stock.symbol) }>Remove {stock.symbol} from {props.watchlistName}</button>
                 </div>
             )
