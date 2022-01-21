@@ -1,0 +1,9 @@
+.search * {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+input {
+    margin: auto 5px;
+}

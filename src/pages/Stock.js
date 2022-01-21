@@ -4,8 +4,23 @@ import '../views/Stock.css'
 const Stock = (props) => {
     
     const [stock, setStock] = useState(null) //.symbol
+    const [inWatchlist, setInWatchlist] = useState(null)
 
 
+
+
+    const checkIfInWatchlist = () => {
+        props.stockList.map((stockListSearch)=> {
+            if (stockListSearch.symbol === props.match.params.symbol.toUpperCase()) {
+                setInWatchlist(true)
+            }
+        })
+    }
+
+    const addedToWatchlist = async () => {
+        addToWatchlist(stock.symbol)
+        setInWatchlist(true)
+    }
 
 
     const addToWatchlist = async (ticker) => {
@@ -51,11 +66,13 @@ const Stock = (props) => {
             heldPercentInsiders: stockData.heldPercentInsiders,
             heldPercentInstitutions: stockData.heldPercentInstitutions
         })
-    
+        checkIfInWatchlist()
     }
 
-    useEffect(()=> {
-        data()
+
+
+    useEffect( async ()=> {
+        await data()
     },[])
 
     const loaded = () => {
@@ -100,7 +117,11 @@ const Stock = (props) => {
                     <p>Percent Held by Institutions: {stock.heldPercentInstitutions}%</p>
                 </div>
                 <div className='buttonInfo'>
-                    <button onClick={() => addToWatchlist(stock.symbol)} >Add to Watchlist</button>
+                    {inWatchlist ?
+                        <h1>Added to Watchlist</h1>
+                        :
+                        <button onClick={addedToWatchlist} >Add to Watchlist</button>
+                    }
                 </div>
             </div>
         )
@@ -115,7 +136,7 @@ const Stock = (props) => {
     return(
         <div>
             {
-                stock ?
+                props.ready && stock ?
                 loaded()
                 :
                 loading() 

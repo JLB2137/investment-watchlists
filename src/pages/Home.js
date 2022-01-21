@@ -19,7 +19,6 @@ const Home = (props) => {
             symbol: stockData.symbol,
             regularMarketPrice: stockData.regularMarketPrice
         })
-        props.watchlistNaming(props.user)
     }
 
     useEffect(()=> {

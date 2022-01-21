@@ -1,0 +1,39 @@
+.watchlistName {
+    text-align: center;
+}
+
+.watchlistUpdate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.watchlistUpdate * {
+    margin: auto 5px;
+}
+
+.listOfStocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin: auto;
+    gap: 10px 50px;
+}
+
+.watchlistStock {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    height: 400px;
+    text-align: center;
+}
+.watchlistStock button {
+    justify-content: flex-end;
+    text-align: center;
+}
+.watchlistStock p {
+    margin: 10px;
+    text-align: center;
+}

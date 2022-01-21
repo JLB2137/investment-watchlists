@@ -1,33 +1,10 @@
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import '../views/Watchlist.css'
 
 const Watchlist = (props) => {
 
-    const [stockList, setStockList] = useState([])
-    const [ready, setReady] = useState(null)
     const [watchlistRename,setWatchlistRename] = useState(null)
-
-    const removeSymbolFromState = (ticker) => {
-        let newSet = []
-        stockList.map((stock)=> {
-            if (stock.symbol !== ticker && newSet.length >= 1) {
-                newSet.push(stock)
-            } else if (stock.symbol !== ticker && newSet.length <= 1) {
-                newSet = [stock]
-            }
-        })
-        setStockList(newSet)
-    }
-
-
-    const removeFromWatchlist = async (tickerID,symbol) => {
-        setReady(null)
-        await fetch(`https://investment-watchlists-backend.herokuapp.com/post/${tickerID}`, {
-            method: "DELETE"
-        })
-        removeSymbolFromState(symbol)
-        setReady(true)
-    }
 
     const watchlistNameChangeInput = (evt) => {
         setWatchlistRename(
@@ -70,39 +47,14 @@ const Watchlist = (props) => {
         props.setWatchlistName(watchlistRename)
     }
 
-
-    
-
-    const data = async () => {
-        const response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlist/${props.user.uid}`)
-        const data = await response.json()
-        data.forEach(async (stock) => {
-            let stockResponse = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${stock.symbol}`)
-            let stockData = await stockResponse.json()
-            stockData = stockData.result[0]
-            stockData = {
-                MONGO_ID: stock._id,
-                quoteSourceName: stockData.quoteSourceName,
-                dividendsPerShare: stockData.dividendsPerShare,
-                regularMarketChangePercent: stockData.regularMarketChangePercent,
-                regularMarketVolume: stockData.regularMarketVolume,
-                longName: stockData.longName,
-                symbol: stockData.symbol,
-                regularMarketPrice: stockData.regularMarketPrice
-            }
-            setStockList(stockList => [...stockList, stockData])
-        })
-        setReady(true)
-    }
-
     useEffect(()=> {
-        data()
+        props.createWatchlist()
     },[])
 
 
 
     const loaded = () => {
-        const listOfStocks = stockList.map((stock) => {
+        const listOfStocks = props.stockList.map((stock) => {
             return(
                 <div className='watchlistStock'>
                     <Link to={`/stock/${stock.symbol}`}>
@@ -113,12 +65,12 @@ const Watchlist = (props) => {
                     <p>Price: ${stock.regularMarketPrice}</p>
                     <p>Daily Percent Change: {stock.regularMarketChangePercent}%</p>
                     <p>Daily Volume: {stock.regularMarketVolume} Orders</p>
-                    <button onClick={()=> removeFromWatchlist(stock.MONGO_ID,stock.symbol) }>Remove {stock.symbol} from {props.watchlistName}</button>
+                    <button onClick={()=> props.removeFromWatchlist(stock.MONGO_ID,stock.symbol) }>Remove {stock.symbol} from {props.watchlistName}</button>
                 </div>
             )
         })
         return(
-            <div className='home'>
+            <div className='watchlist'>
                 <div className="watchlistName">
                     {props.watchlistName ?
                         <h1>{props.watchlistName}</h1>
@@ -128,11 +80,14 @@ const Watchlist = (props) => {
                 </div>
                 <div className='watchlistUpdate'>
                     <form className='watchlistUpdate' onSubmit={watchlistNameChangeSubmit}>
+                        <p>Update Watchlist Name:</p>
                         <input type="text" name="watchlistInput" value={watchlistRename} onChange={watchlistNameChangeInput} />
-                        <input type="submit" name="renameSubmit" value="Submit" />
+                        <input type="submit" name="renameSubmit" value="Update" />
                     </form>
                 </div>
-                {listOfStocks}
+                <div className='listOfStocks'>
+                    {listOfStocks}
+                </div>
             </div>
         )
     }
@@ -146,7 +101,7 @@ const Watchlist = (props) => {
     return(
         <div>
             {
-                ready ?
+                props.ready ?
                 loaded()
                 :
                 loading() 

@@ -3,6 +3,21 @@ import {login, logout} from '../services/firebase'
 import '../views/Nav.css'
 
 const Nav = (props) => {
+
+
+    const login2 = async () => {
+        await login()
+        try {
+            await props.createWatchlist()
+        } catch(err) {
+            await props.createWatchlist()
+            console.log("there was an error")
+        }
+        console.log("login complete")
+    }
+
+
+
     return(
         <div className='Nav'>
             <div className='header'>
@@ -46,10 +61,15 @@ const Nav = (props) => {
                 <div className="user">
                     <p>{props.user.displayName}</p>
                     <img src={props.user.photoURL} alt="Account Image" />
-                    <button onClick={logout}>Logout</button>
+                    <Link to="/">
+                    <button onClick={() => {
+                        logout()
+                        props.clearHooks()
+                    }}>Logout</button>
+                    </Link>
                 </div>
                 :
-                <button onClick={login}>Login</button>
+                <button onClick={login2}>Login</button>
             }
         </div>
     )

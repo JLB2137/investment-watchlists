@@ -8,17 +8,18 @@ import { auth } from './services/firebase';
 
 function App() {
 
-  const [user,setUser] = useState(null)
+  /* const [user,setUser] = useState(null)
 
   useEffect( ()=> {
     auth.onAuthStateChanged(user=>setUser(user))
   }
     ,[])
+  */
 
   return (
     <div className="App">
       <Switch>
-        <Main user={user} />
+        <Main />
       </Switch>
     </div>
   );
