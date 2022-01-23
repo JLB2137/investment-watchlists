@@ -41,6 +41,9 @@ const Nav = (props) => {
                         <h3>Watchlist</h3>
                         }
                     </Link>
+                    <Link to='/settings'>
+                        <h3>Settings</h3>
+                    </Link>
                 </div>
                 :
                 <div className='links'>

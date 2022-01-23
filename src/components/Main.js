@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import Stock from '../pages/Stock'
 import Search from '../pages/Search'
 import Watchlist from '../pages/Watchlist'
+import Settings from '../pages/Settings'
 
 const Main = (props) => {
 
@@ -17,6 +18,10 @@ const Main = (props) => {
     const [watchlistNameID, setWatchlistNameID] = useState(null)
     const [stockList, setStockList] = useState([])
     const [ready, setReady] = useState(null)
+    const [settingsReady, setSettingsReady] = useState(null)
+    const [navColor, setNavColor] = useState(null)
+    const [accentColor, setNavColor] = useState(null)
+    const [colorID, setColorID] = useState(null)
 
 
     //clear the hooks when logging out
@@ -50,6 +55,18 @@ const Main = (props) => {
         const ID = await response[0]._id
         setWatchlistName(name)
         setWatchlistNameID(ID)
+    } 
+
+    const colorScheme = async () => {
+        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/colorScheme/${user.uid}`)
+        response = await response.json()
+        const navColor = await response[0].navColor
+        const accentColor = await response[0].accentColor
+        const ID = await response[0]._id
+        setNavColor(navColor)
+        setAccentColor(accentColor)
+        setColorID(ID)
+        setSettingsReady(true)
     } 
 
     //this function spefically targets the removed stock from the
@@ -118,6 +135,9 @@ const Main = (props) => {
         if (watchlistName === null) {
             watchlistNaming()
         }
+        if (colorID === null) {
+            colorScheme()
+        }
     })
 
 
@@ -135,6 +155,19 @@ const Main = (props) => {
             </Route>
             <Route path='/about'>
                 <About />
+            </Route>
+            <Route path='/settings'>
+                <Settings 
+                key={user}
+                user={user}
+                navColor={navColor}
+                setNavColor={setNavColor}
+                accentColor={accentColor}
+                setAccentColor={setAccentColor}
+                colorID={colorID}
+                colorScheme={colorScheme}
+                settingsReady={settingsReady}
+                />
             </Route>
             <Route path='/stock/:symbol' render={(rp) => (
                 <Stock
