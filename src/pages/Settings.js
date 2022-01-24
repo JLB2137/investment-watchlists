@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import '../views/Settings.css'
 
 const Settings = (props) => {
     const [watchlistRename,setWatchlistRename] = useState(null)
@@ -24,11 +25,18 @@ const Settings = (props) => {
         )
     }
 
+    //grabs the initial values input by the user
+    const initialLoadValues = () => {
+        setWatchlistRename(props.watchlistName)
+        setNavColorReset(props.navColor)
+        setAccentColorReset(props.accentColor)
+    }
+
     //update the stored variable on the DB to reflect the new
     //watchlist name and reset the state for the title
     const watchlistNameChangeSubmit = async (evt) => {
         evt.preventDefault()
-        if (props.watchlistName === null) {
+        if (props.newAccount === true) {
             //if a new name hasn't been created add it using post
             await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${props.user.uid}`, {
             method: "POST",
@@ -37,13 +45,17 @@ const Settings = (props) => {
             },
             body: JSON.stringify({
                 user: props.user.uid,
-                watchlistName: watchlistRename
+                watchlistName: watchlistRename,
+                navColor: navColorReset,
+                accentColor: accentColorReset
             })
         })
             console.log("props.watchlistNaming()",props.watchlistNaming())
             //rerun the data to update based on the new post and
             //saved watchlist name
             props.watchlistNaming()
+            //set the new account variable to false
+            props.setNewAccount(false)
         } else {
             await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/rename/${props.watchlistNameID}`, {
                 method: "PUT",
@@ -52,72 +64,55 @@ const Settings = (props) => {
                 },
                 body: JSON.stringify({
                     user: props.user.uid,
-                    watchlistName: watchlistRename
-                })
-            })
-        }
-        props.setWatchlistName(watchlistRename)
-    }
-
-    const colorChangeSubmit = async (evt) => {
-        evt.preventDefault()
-        if (props.colorID === null) {
-            //if a new name hasn't been created add it using post
-            await fetch(`https://investment-watchlists-backend.herokuapp.com/colorScheme/${props.user.uid}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/json"
-            },
-            body: JSON.stringify({
-                user: props.user.uid,
-                navColor: navColorReset,
-                accentColor: accentColorReset
-            })
-        })
-            //rerun the data to update based on the new post and
-            //saved watchlist name
-            props.colorScheme()
-        } else {
-            await fetch(`https://investment-watchlists-backend.herokuapp.com/colorScheme/change/${props.colorID}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "Application/json"
-                },
-                body: JSON.stringify({
-                    user: props.user.uid,
+                    watchlistName: watchlistRename,
                     navColor: navColorReset,
                     accentColor: accentColorReset
                 })
             })
+            console.log("running the function to update")
         }
+        props.setWatchlistName(watchlistRename)
         props.setNavColor(navColorReset)
-        props.setAccentColor(navColorReset)
+        props.setAccentColor(accentColorReset)
     }
 
+useEffect(()=> {
+    props.setSettingsReady(true)
+})
+
+useEffect(()=> {
+    initialLoadValues()
+},[])
 
     const loaded = () => {
         return(
             <div className='settings'>
-                <form className='watchlistUpdate' onSubmit={watchlistNameChangeSubmit}>
-                    <p>Update Watchlist Name:</p>
-                    <input type="text" name="watchlistInput" value={watchlistRename} onChange={watchlistNameChangeInput} />
-                    <input type="submit" name="renameSubmit" value="Update" />
+                <h1>Update User Settings</h1>
+                <form className='settingsUpdate' style={{backgroundColor: props.navColor}} onSubmit={watchlistNameChangeSubmit}>
+                    <div className='input'>
+                        <p style={{color: props.accentColor}}>Watchlist Name:</p>
+                        <input className="textInput" type="text" name="watchlistInput" value={watchlistRename} onChange={watchlistNameChangeInput} />
+                    </div>
+                    <div className='input'>
+                        <p style={{color: props.accentColor}}>Navigation Color:</p>
+                        <input className="textInput" type="text" name="watchlistInput" value={navColorReset} onChange={navColorChangeInput} />
+                    </div>
+                    <div className='input'>
+                        <p style={{color: props.accentColor}}>Accent Color:</p>
+                        <input className="textInput" type="text" name="watchlistInput" value={accentColorReset} onChange={accentColorChangeInput} />
+                    </div>
+                    <input type="submit" id="submit" name="renameSubmit" value="Update" />
                 </form>
-                <form className='colorUpdates' onSubmit={colorChangeSubmit}>
-                    <p>Update Nav Color:</p>
-                    <input type="text" name="watchlistInput" value={navColorReset} onChange={navColorChangeInput} />
-                    <input type="submit" name="renameSubmit" value="Update" />
-                    <p>Update Accent Color:</p>
-                    <input type="text" name="watchlistInput" value={accentColorReset} onChange={accentColorChangeInput} />
-                    <input type="submit" name="renameSubmit" value="Update" />
-                </form>
+                <p id="additionalInfo">Colors can be input as their name (i.e. green), RGB value (i.e. RGB(254,251,210)), or Hex value (i.e. #FEFBD2). </p>
             </div>
         )
     }
 
     const loading = () => {
         return(
-            <h1>Loading...</h1>
+            <div className="loading">
+                <h1>Loading Information...</h1>
+            </div>
         )
     }
 

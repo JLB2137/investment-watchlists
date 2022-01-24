@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: red;
+    border-radius: 5px;
 }
 
 .header {
     justify-content: flex-start;
+    width: 300px;
 }
 
 .links {
@@ -14,6 +15,12 @@
     flex-direction: row;
     justify-content: space-between;
     margin: auto;
+    font-style: italic;
+    text-align: center;
+}
+
+.links a {
+    text-decoration: none;
 }
 
 .user {
@@ -21,8 +28,23 @@
     align-items: center;
     justify-content: flex-end;
     margin: 0;
+    width: 300px;
 }
 
 .Nav * {
     padding: 10px;
 }
+
+.user img {
+    border-radius: 75px;
+}
+
+.user button {
+    border-radius: 10px;
+}
+
+#displayName {
+    text-align: center;
+}
+
+

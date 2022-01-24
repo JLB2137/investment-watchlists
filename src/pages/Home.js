@@ -1,60 +1,18 @@
-import {useState,useEffect} from 'react'
+import '../views/Home.css'
 
 const Home = (props) => {
 
-    const [stock, setStock] = useState(null) //.symbol
-
-    
-
-    const data = async () => {
-        const response = await fetch('https://investment-watchlists-backend.herokuapp.com/')
-        const data = await response.json()
-        const stockData = await props.responseLengthCheck(data)
-        setStock({
-            quoteSourceName: stockData.quoteSourceName,
-            dividendsPerShare: stockData.dividendsPerShare,
-            regularMarketChangePercent: stockData.regularMarketChangePercent,
-            regularMarketVolume: stockData.regularMarketVolume,
-            longName: stockData.longName,
-            symbol: stockData.symbol,
-            regularMarketPrice: stockData.regularMarketPrice
-        })
-    }
-
-    useEffect(()=> {
-        data()
-    },[])
-
-    const loaded = () => {
-        return(
-            <div className='home'>
-                <h1>Weclome to the Stock Watchlist App!</h1>
-                <h3>Example Ticker: TSLA</h3>
-                <h5>Name: {stock.longName}</h5>
-                <p>Ticker: {stock.symbol}</p>
-                <p>Quote Source: {stock.quoteSourceName}</p>
-                <p>Dividends: {stock.dividendsPerShare}</p>
-                <p>Price: ${stock.regularMarketPrice}</p>
-                <p>Daily Percent Change: {stock.regularMarketChangePercent}%</p>
-                <p>Daily Volume: {stock.regularMarketVolume} Orders</p>
-            </div>
-        )
-    }
-
-    const loading = () => {
-        return(
-            <h1>Loading...</h1>
-        )
-    }
-
     return(
-        <div>
-            {
-                stock ?
-                loaded()
-                :
-                loading() 
-            }
+        <div className='home'>
+            <h1>Weclome to the Stock Watchlist App!</h1>
+            <h3>Example Ticker: TSLA</h3>
+            <h4>Name: Tesla, Inc.</h4>
+            <p>Ticker: TSLA</p>
+            <p>Quote Source: Nasdaq Real Time Price</p>
+            <p>Dividends: 0</p>
+            <p>Price: $866.49</p>
+            <p>Daily Percent Change: -8.20%</p>
+            <p>Daily Volume: 25097609 Orders</p>
         </div>
     )
 }

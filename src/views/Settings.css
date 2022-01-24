@@ -1,0 +1,45 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsUpdate {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: max-content;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.settingsUpdate #submit {
+    margin: 10px;
+}
+
+#additionalInfo {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.settingsUpdate input {
+    text-align: center;
+}
+
+.settingsUpdate p {
+    text-decoration: underline;
+    text-align: left;
+    justify-content: flex-start;
+    margin-right: 10px;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+}
+
+.textInput {
+    justify-content: flex-end;
+    margin: auto 0 auto auto;
+}

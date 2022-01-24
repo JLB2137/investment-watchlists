@@ -20,8 +20,9 @@ const Main = (props) => {
     const [ready, setReady] = useState(null)
     const [settingsReady, setSettingsReady] = useState(null)
     const [navColor, setNavColor] = useState(null)
-    const [accentColor, setNavColor] = useState(null)
+    const [accentColor, setAccentColor] = useState(null)
     const [colorID, setColorID] = useState(null)
+    const [newAccount, setNewAccount] = useState(null)
 
 
     //clear the hooks when logging out
@@ -31,6 +32,9 @@ const Main = (props) => {
         setWatchlistNameID(null)
         setStockList([])
         setReady(null)
+        setNavColor(null)
+        setAccentColor(null)
+        console.log("hooks have been cleared")
     }
 
     //this changes the response output based on what is needed
@@ -53,21 +57,31 @@ const Main = (props) => {
         response = await response.json()
         const name = await response[0].watchlistName
         const ID = await response[0]._id
+        const navColor = await response[0].navColor
+        const accentColor = await response[0].accentColor
+        const colorID = await response[0]._id
         setWatchlistName(name)
         setWatchlistNameID(ID)
+        setNavColor(navColor)
+        setAccentColor(accentColor)
+        setColorID(colorID)
     } 
 
     const colorScheme = async () => {
         let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/colorScheme/${user.uid}`)
         response = await response.json()
-        const navColor = await response[0].navColor
-        const accentColor = await response[0].accentColor
-        const ID = await response[0]._id
-        setNavColor(navColor)
-        setAccentColor(accentColor)
-        setColorID(ID)
-        setSettingsReady(true)
+
     } 
+
+    const newUserCheck = async () => {
+        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${user.uid}`)
+        response = await response.json()
+        if (response.length === 0) {
+            setNewAccount(true)
+        } else {
+            setNewAccount(false)
+        }
+    }
 
     //this function spefically targets the removed stock from the
     //watchlist and removes it directly from the state
@@ -82,6 +96,7 @@ const Main = (props) => {
         })
         setStockList(newSet)
     }
+
 
     //this function removes the symbol from the list of symbols
     //in the watchlist database for later pulls
@@ -134,9 +149,7 @@ const Main = (props) => {
     useEffect(()=> {
         if (watchlistName === null) {
             watchlistNaming()
-        }
-        if (colorID === null) {
-            colorScheme()
+            newUserCheck()
         }
     })
 
@@ -149,6 +162,10 @@ const Main = (props) => {
             watchlistName={watchlistName}
             clearHooks={clearHooks}
             createWatchlist={createWatchlist}
+            navColor={navColor}
+            accentColor={accentColor}
+            watchlistNaming={watchlistNaming}
+            newUserCheck={newUserCheck}
             />
             <Route exact path='/'>
                 <Home  responseLengthCheck={responseLengthCheck} />
@@ -160,11 +177,19 @@ const Main = (props) => {
                 <Settings 
                 key={user}
                 user={user}
+                setSettingsReady={setSettingsReady}
+                setNewAccount={setNewAccount}
+                newAccount={newAccount}
                 navColor={navColor}
                 setNavColor={setNavColor}
                 accentColor={accentColor}
                 setAccentColor={setAccentColor}
+                watchlistName={watchlistName}
+                setWatchlistName={setWatchlistName}
                 colorID={colorID}
+                watchlistNaming={watchlistNaming}
+                watchlistNameID={watchlistNameID}
+                watchlistName={watchlistName}
                 colorScheme={colorScheme}
                 settingsReady={settingsReady}
                 />
@@ -203,6 +228,8 @@ const Main = (props) => {
                                 stockList={stockList}
                                 ready={ready}
                                 createWatchlist={createWatchlist}
+                                navColor={navColor}
+                                accentColor={accentColor}
                                 />
                             )} />
         </div>

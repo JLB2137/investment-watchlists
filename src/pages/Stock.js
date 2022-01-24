@@ -66,7 +66,10 @@ const Stock = (props) => {
             heldPercentInsiders: stockData.heldPercentInsiders,
             heldPercentInstitutions: stockData.heldPercentInstitutions
         })
-        checkIfInWatchlist()
+        //if the the user is signed in
+        if (props.user) {
+            checkIfInWatchlist()
+        }
     }
 
 
@@ -117,10 +120,13 @@ const Stock = (props) => {
                     <p>Percent Held by Institutions: {stock.heldPercentInstitutions}%</p>
                 </div>
                 <div className='buttonInfo'>
-                    {inWatchlist ?
+                    {props.user ?
+                        inWatchlist ?
                         <h1>Added to Watchlist</h1>
                         :
                         <button onClick={addedToWatchlist} >Add to Watchlist</button>
+                    :
+                    <></>
                     }
                 </div>
             </div>
@@ -129,17 +135,27 @@ const Stock = (props) => {
 
     const loading = () => {
         return(
-            <h1>Loading...</h1>
+            <div className="loading">
+                <h1>Loading Information...</h1>
+            </div>
         )
     }
 
     return(
         <div>
-            {
+            { props.user ?
+                
                 props.ready && stock ?
-                loaded()
+                    loaded()
+                    :
+                    loading()
+
                 :
-                loading() 
+                
+                stock ?
+                    loaded()
+                    :
+                    loading()
             }
         </div>
     )

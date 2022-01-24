@@ -1,8 +1,9 @@
 .stockSearch {
     display: grid;
     justify-content: center;
-    grid-template-columns: 200px 200px;
-    grid-template-rows: 150px 400px 400px 400px;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 150px 300px 300px 300px;
+    column-gap: 20px;
 }
 
 .stockHeader {
@@ -15,19 +16,19 @@
 .dailyInfo {
     grid-column: 1 / span 1;
     grid-row: 2 / span 1;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .preMarketInfo {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .bookInfo {
     grid-column: 1 / span 1;
     grid-row: 3 / span 1;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .tradingInfo {
