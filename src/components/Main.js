@@ -184,7 +184,6 @@ const Main = (props) => {
                 watchlistNaming={watchlistNaming}
                 watchlistNameID={watchlistNameID}
                 watchlistName={watchlistName}
-                colorScheme={colorScheme}
                 settingsReady={settingsReady}
                 />
             </Route>
