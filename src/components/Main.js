@@ -81,7 +81,7 @@ const Main = (props) => {
     //watchlist and removes it directly from the state
     const removeSymbolFromState = (ticker) => {
         let newSet = []
-        stockList.map((stock)=> {
+        stockList.map((stock) => {
             if (stock.symbol !== ticker && newSet.length >= 1) {
                 newSet.push(stock)
             } else if (stock.symbol !== ticker && newSet.length <= 1) {
