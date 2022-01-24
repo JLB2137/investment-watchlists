@@ -67,12 +67,6 @@ const Main = (props) => {
         setColorID(colorID)
     } 
 
-    const colorScheme = async () => {
-        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/colorScheme/${user.uid}`)
-        response = await response.json()
-
-    } 
-
     const newUserCheck = async () => {
         let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${user.uid}`)
         response = await response.json()
