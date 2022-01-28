@@ -12,15 +12,25 @@ import Settings from '../pages/Settings'
 const Main = (props) => {
 
     //setup state hooks
+    //google user
     const [user,setUser] = useState(null)
+    //hook for searching stocks
     const [searchStock, setSearchStock] = useState(null)
+    //hook to name the watchlist
     const [watchlistName, setWatchlistName] = useState(null)
+    //hook for ID provided by mongo for the watchlist name
     const [watchlistNameID, setWatchlistNameID] = useState(null)
+    //hook for stock list for watchlist
     const [stockList, setStockList] = useState([])
+    //hook for ready to confirm page load
     const [ready, setReady] = useState(null)
+    //hook for settings to confirm page load
     const [settingsReady, setSettingsReady] = useState(null)
+    //hook for navigation color
     const [navColor, setNavColor] = useState(null)
+    //hook for accent colors in nav
     const [accentColor, setAccentColor] = useState(null)
+    //hook for grab color
     const [colorID, setColorID] = useState(null)
     const [newAccount, setNewAccount] = useState(null)
 
