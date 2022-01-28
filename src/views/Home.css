@@ -15,3 +15,16 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.home p {
+    color: #737886;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 15px;
+    }
+    h3 {
+        font-size: 12px;
+    }
+}

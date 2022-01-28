@@ -5,5 +5,10 @@
 }
 
 input {
-    margin: auto 5px;
+    margin: auto .25% auto 0;
+}
+
+.home img {
+    width: 10%;
+    height: 10%;
 }

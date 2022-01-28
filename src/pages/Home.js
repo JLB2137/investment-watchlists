@@ -1,10 +1,12 @@
 import '../views/Home.css'
+import stock from '../stocks.png'
 
 const Home = (props) => {
 
     return(
         <div className='home'>
             <h1>Weclome to the Stock Watchlist App!</h1>
+            <img src={stock} />
             <h3>Example Ticker: TSLA</h3>
             <h4>Name: Tesla, Inc.</h4>
             <p>Ticker: TSLA</p>

@@ -3,12 +3,14 @@ import '../views/Stock.css'
 
 const Stock = (props) => {
     
-    const [stock, setStock] = useState(null) //.symbol
+    //stock being searched
+    const [stock, setStock] = useState(null)
+    //check for whether it is currently in the watchlist
     const [inWatchlist, setInWatchlist] = useState(null)
 
 
 
-
+    //function to check whether the symbol has been added to the watchlist
     const checkIfInWatchlist = () => {
         props.stockList.map((stockListSearch)=> {
             if (stockListSearch.symbol === props.match.params.symbol.toUpperCase()) {
@@ -17,12 +19,7 @@ const Stock = (props) => {
         })
     }
 
-    const addedToWatchlist = async () => {
-        addToWatchlist(stock.symbol)
-        setInWatchlist(true)
-    }
-
-
+    //function to add it to the database for pull in watchlist
     const addToWatchlist = async (ticker) => {
         await fetch('https://investment-watchlists-backend.herokuapp.com/post', {
             method: "POST",
@@ -35,7 +32,14 @@ const Stock = (props) => {
             })
         })
     }
+    
+    //function to add it to the database for pull in watchlist
+    const addedToWatchlist = async () => {
+        addToWatchlist(stock.symbol)
+        setInWatchlist(true)
+    }
 
+    //grab data returned from backend on stock
     const data = async () => {
         const response = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${props.match.params.symbol}`)
         const data = await response.json()

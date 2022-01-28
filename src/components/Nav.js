@@ -8,11 +8,9 @@ const Nav = (props) => {
     const login2 = async () => {
         await login()
         try {
-            await props.createWatchlist()
             await props.watchlistNaming()
             await props.newUserCheck()
         } catch(err) {
-            await props.createWatchlist()
             await props.watchlistNaming()
             await props.newUserCheck()
             console.log("there was an error")
@@ -43,11 +41,11 @@ const Nav = (props) => {
             </div>
                 {props.user ?
                 <div className='links'>
-                    <Link to='/about'   style={{color: props.accentColor}}>
-                        <h3>About</h3>
-                    </Link>
                     <Link to='/' style={{color: props.accentColor}}>
                         <h3>Home</h3>
+                    </Link>
+                    <Link to='/about'   style={{color: props.accentColor}}>
+                        <h3>About</h3>
                     </Link>
                     <Link to='/search' style={{color: props.accentColor}}>
                         <h3>Search</h3>
@@ -65,11 +63,11 @@ const Nav = (props) => {
                 </div>
                 :
                 <div className='links'>
-                    <Link to='/about' style={{color: "white"}}>
-                        <h3>About</h3>
-                    </Link>
                     <Link to='/' style={{color: "white"}}>
                         <h3>Home</h3>
+                    </Link>
+                    <Link to='/about' style={{color: "white"}}>
+                        <h3>About</h3>
                     </Link>
                     <Link to='/search' style={{color: "white"}}>
                         <h3>Search</h3>

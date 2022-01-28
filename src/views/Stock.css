@@ -42,3 +42,7 @@
     grid-row: 4 / span 1;
     margin: 40px auto;
 }
+
+.stockSearch p {
+    color: #737886;
+}

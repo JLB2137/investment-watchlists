@@ -43,3 +43,8 @@
     justify-content: flex-end;
     margin: auto 0 auto auto;
 }
+
+.settings p {
+    color: #737886;
+
+}

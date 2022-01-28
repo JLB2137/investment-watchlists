@@ -30,8 +30,7 @@ const Main = (props) => {
     const [navColor, setNavColor] = useState(null)
     //hook for accent colors in nav
     const [accentColor, setAccentColor] = useState(null)
-    //hook for grab color
-    const [colorID, setColorID] = useState(null)
+    //hook to confirm whether the account is new
     const [newAccount, setNewAccount] = useState(null)
 
 
@@ -69,14 +68,14 @@ const Main = (props) => {
         const ID = await response[0]._id
         const navColor = await response[0].navColor
         const accentColor = await response[0].accentColor
-        const colorID = await response[0]._id
         setWatchlistName(name)
         setWatchlistNameID(ID)
         setNavColor(navColor)
         setAccentColor(accentColor)
-        setColorID(colorID)
     } 
 
+
+    //function to confirm if the user is new and set the hook
     const newUserCheck = async () => {
         let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${user.uid}`)
         response = await response.json()
@@ -143,13 +142,12 @@ const Main = (props) => {
         setReady(true)
     }
 
-
-    useEffect(async () => {
-        auth.onAuthStateChanged(user=>setUser(user))
-        await createWatchlist()
+    //run authentication and create the watchlist once
+    useEffect(() => {
+       auth.onAuthStateChanged(user=>setUser(user))
     },[])
  
-
+    //if the watchlist has no name run watchlistnaming and the user check
     useEffect(()=> {
         if (watchlistName === null) {
             watchlistNaming()
@@ -163,9 +161,8 @@ const Main = (props) => {
             <Nav
             key={user} 
             user={user}
-            watchlistName={watchlistName}
             clearHooks={clearHooks}
-            createWatchlist={createWatchlist}
+            watchlistName={watchlistName}
             navColor={navColor}
             accentColor={accentColor}
             watchlistNaming={watchlistNaming}
@@ -190,10 +187,8 @@ const Main = (props) => {
                 setAccentColor={setAccentColor}
                 watchlistName={watchlistName}
                 setWatchlistName={setWatchlistName}
-                colorID={colorID}
                 watchlistNaming={watchlistNaming}
                 watchlistNameID={watchlistNameID}
-                watchlistName={watchlistName}
                 settingsReady={settingsReady}
                 />
             </Route>

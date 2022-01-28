@@ -6,19 +6,21 @@ const Settings = (props) => {
     const [navColorReset,setNavColorReset] = useState(null)
     const [accentColorReset,setAccentColorReset] = useState(null)
     
-
+    //set watchlist name hook based on input
     const watchlistNameChangeInput = (evt) => {
         setWatchlistRename(
             [evt.target.name] = evt.target.value      
         )
     }
 
+    //set nav color hook based on input
     const navColorChangeInput = (evt) => {
         setNavColorReset(
             [evt.target.name] = evt.target.value      
         )
     }
 
+    //set accent color hook based on input
     const accentColorChangeInput = (evt) => {
         setAccentColorReset(
             [evt.target.name] = evt.target.value      
@@ -76,13 +78,13 @@ const Settings = (props) => {
         props.setAccentColor(accentColorReset)
     }
 
-useEffect(()=> {
-    props.setSettingsReady(true)
-})
+    useEffect(()=> {
+        props.setSettingsReady(true)
+    })
 
-useEffect(()=> {
-    initialLoadValues()
-},[])
+    useEffect(()=> {
+        initialLoadValues()
+    },[])
 
     const loaded = () => {
         return(
