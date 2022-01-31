@@ -57,7 +57,7 @@ The Stock Watchlists app is designed to be an all encompassing tracker for stock
 
 3. Watchlist Page - This page is locked for users that are not signed-in. The name of the watchlist can be edited by the user using the settings page. Each added stock will provide a CTA to the stock page for additional information by clicking the ticker. This page will provide basic details for every stock on the list including company name, price, daily percent change, and daily volume. All stocks can then be removed from the watchlist using the CTA at the bottom of the card. 
 
-4. Settings Page - This page allows the user to change their individual settings and is locked for only signed-in users. The page allows the user to update the navigation/main color as well as the accent color of their setup. Additionally, it provides the ability to change the name of the user's watchlist.
+4. Settings Page - This page allows the user to change their individual settings and is locked for only signed-in users. The page allows the user to update the navigation/main color as well as the accent color of their setup. Additionally, it provides the ability to change the name of the user's watchlist. Hitting the update button will then save this information for future use.
 
 
 ## Future Enhancements

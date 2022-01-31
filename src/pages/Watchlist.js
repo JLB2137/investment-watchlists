@@ -19,9 +19,8 @@ const Watchlist = (props) => {
                         <h5>{stock.symbol}</h5>
                     </Link>
                     <p>{stock.longName}</p>
-                    <p>Quote Source: {stock.quoteSourceName}</p>
                     <p>Price: ${stock.regularMarketPrice}</p>
-                    <p>Daily Percent Change: {stock.regularMarketChangePercent}%</p>
+                    <p>Daily Change: {stock.regularMarketChangePercent}%</p>
                     <p>Daily Volume: {stock.regularMarketVolume} Orders</p>
                     <button onClick={()=> props.removeFromWatchlist(stock.MONGO_ID,stock.symbol) }>Remove from Watchlist</button>
                 </div>
