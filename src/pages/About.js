@@ -5,7 +5,7 @@ const About = (props) => {
         <div className="about">
             <div  className="aboutInfo">
                 <h1>Welcome to the Stock Watchlists App!</h1>
-                <p>I built this watchlist app to help track stocks in your portfolio! Information is pulled directly from Yahoo Finance in real-time.</p>
+                <p>I built app to help track stocks in your portfolio! Information is pulled directly from Yahoo Finance in real-time.</p>
             </div>
             <div className="stockPage" style={{backgroundColor: props.navColor, color: props.accentColor}}>
                 <h3>Stock Page</h3>

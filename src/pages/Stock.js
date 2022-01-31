@@ -86,8 +86,18 @@ const Stock = (props) => {
         return(
             <div className='stockSearch'>
                 <div className='stockHeader'>
-                    <h1>Name: {stock.longName}</h1>
+                    <h1>{stock.longName}</h1>
                     <p>Ticker: {stock.symbol}</p>
+                    <div className='buttonInfo'>
+                        {props.user ?
+                            inWatchlist ?
+                            <h5>Added to Watchlist</h5>
+                            :
+                            <button onClick={addedToWatchlist} >Add to Watchlist</button>
+                        :
+                        <></>
+                        }
+                    </div>
                 </div>
                 <div className="dailyInfo">
                     <h4>Daily Information</h4>
@@ -122,16 +132,6 @@ const Stock = (props) => {
                     <p>Shares Outstanding: {stock.sharesOutstanding}</p>
                     <p>Percent Held by Insiders: {stock.heldPercentInsiders}%</p>
                     <p>Percent Held by Institutions: {stock.heldPercentInstitutions}%</p>
-                </div>
-                <div className='buttonInfo'>
-                    {props.user ?
-                        inWatchlist ?
-                        <h1>Added to Watchlist</h1>
-                        :
-                        <button onClick={addedToWatchlist} >Add to Watchlist</button>
-                    :
-                    <></>
-                    }
                 </div>
             </div>
         )

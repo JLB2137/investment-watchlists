@@ -24,8 +24,8 @@ const Search = (props) => {
     return(
         <div className="search">
             <h1>Search for Stocks</h1>
-            <form className="stockSearch" onSubmit={stockSearchSubmit} >
-                <p>Stock Symbol:</p>
+            <form className="stockSearchForm" onSubmit={stockSearchSubmit} >
+                <p>Symbol:</p>
                 <input type="text" name="tickerSearch" value={props.searchStock} onChange={stockSearchChange} />
                 <input type="submit" name="submit" value="Search" />
             </form>
