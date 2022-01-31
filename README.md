@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Gift Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies Used
 
-## Available Scripts
+- CSS
+- React
+- NodeJS
+- Axios
+- Express
+- Method-Override
+- Yahoo Finance RapidAPI
+- Google Firebase (Authentication)
+- React Router
+- Mongoose
+- MongoDB (Database)
 
-In the project directory, you can run:
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##### *Stock Watchlists*
+![Stock Watchlists](/public/images/hp.png "Stock Watchlists")
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##### *Gift Guide Navigation*
+![Stock Watchlists Navigation](/public/images/nav.png "Stock Watchlists Navigation")
 
-### `npm test`
+##### *About Page*
+![About Page](/public/images/about.png "About Page")
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### *Search Page*
+![Search Page](/public/images/search.png "Search Page")
 
-### `npm run build`
+##### *Stock Page*
+![Stock Page](/public/images/stock.png "Stock Page")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### *Settings Page*
+![Settings Page](/public/images/settings.png "Settings Page")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### *Watchlist Page*
+![Watchlist Page](/public/images/watchlist.png "Watchlist Page")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Stock Watchlists](https://investment-watchlist.netlify.app/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The Stock Watchlists app is designed to be an all encompassing tracker for stocks based on user input and saved settings.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Navigation - Navigation persists on all pages accross the gift guide. It has an attached 5 functions, which are contingent sign-in status.
+   1. Home - This button will return you to the home page from any location. The home page maintains example data on the information provided to the user based on the stock.
+   2. About - This page is meant to guide the user on some of the functions included on the site. It includes information on all the pages provided to the user.
+   3. Search - This will bring the user to the search page that requires input of a stock symbol. Hitting the search button on this page will redirect the user to that stock's page and provide the user with detailed information.
+   4. Watchlist - This route can actually be renamed using the settings page mentioned below. This page contains a lesser amount of information on each stock the user add's to the their watchlist from the stock page.
+   5. Settings - This page will route the user to the settings for their unique Stock Watchlist's setup. This information will be saved, so any changes will reapear upon login.
 
-## Learn More
+2. Stock Pages - This page maintains detailed information on a stock including daily information, pre-market information, book information, and trading information. This page maintains a CTA below the data that compares against the user's current watchlist. If the stock is in the watchlist, it will tell the user "Added to Watchlist", otherwise a CTA will appear to track the stock.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Watchlist Page - This page is locked for users that are not signed-in. The name of the watchlist can be edited by the user using the settings page. Each added stock will provide a CTA to the stock page for additional information by clicking the ticker. This page will provide basic details for every stock on the list including company name, price, daily percent change, and daily volume. All stocks can then be removed from the watchlist using the CTA at the bottom of the card. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Settings Page - This page allows the user to change their individual settings and is locked for only signed-in users. The page allows the user to update the navigation/main color as well as the accent color of their setup. Additionally, it provides the ability to change the name of the user's watchlist.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Enhancements
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I would like to continue to make updates to the CSS to beautify the site and provide the user with relevant data.
