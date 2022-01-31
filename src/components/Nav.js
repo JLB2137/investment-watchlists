@@ -6,10 +6,13 @@ import '../views/Nav.css'
 
 const Nav = (props) => {
 
+    //hook to track switch for nav
     const [navPopChange, setNavPopChange] = useState(false)
 
+    //determines if the screen is mobile or below 700px width
     const isMobile = useMediaQuery({ query: `(max-width: 700px)` });
 
+    //resets the nav based on mobile to show either login info or page routing
     const navPop = () => {
         if (navPopChange === true && isMobile === true) {
             setNavPopChange(false)

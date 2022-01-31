@@ -7,7 +7,7 @@
 - NodeJS
 - Axios
 - Express
-- Method-Override
+- React Responsive
 - Yahoo Finance RapidAPI
 - Google Firebase (Authentication)
 - React Router
