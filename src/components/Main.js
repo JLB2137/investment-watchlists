@@ -172,7 +172,11 @@ const Main = (props) => {
                 <Home  responseLengthCheck={responseLengthCheck} />
             </Route>
             <Route path='/about'>
-                <About />
+                <About 
+                key={user}
+                navColor={navColor}
+                accentColor={accentColor}
+                />
             </Route>
             <Route path='/settings'>
                 <Settings 
