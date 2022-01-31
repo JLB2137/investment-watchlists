@@ -10,6 +10,10 @@
     width: 33%;
 }
 
+#hamburger {
+    display: none;
+}
+
 .links {
     display: flex;
     flex-direction: row;
@@ -45,6 +49,47 @@
 
 #displayName {
     text-align: center;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .Nav * {
+        font-size: 15px;
+    }
+
+    #hamburger {
+        justify-content: center;
+        
+    }
+
+    #appName {
+        display: none;
+    }
+    
+    #hamburger {
+        display: flex;
+    }
+
+    .user img {
+        width: 30%;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0;
+        width: 100%;
+    }
+
+    .links * {
+        font-size: 10px;
+        padding: 5px;
+        margin-right: 2px;
+    }
+  
+
 }
 
 

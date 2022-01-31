@@ -1,9 +1,24 @@
+import { useMediaQuery } from 'react-responsive';
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {login, logout} from '../services/firebase'
 import '../views/Nav.css'
 
 const Nav = (props) => {
 
+    const [navPopChange, setNavPopChange] = useState(false)
+
+    const isMobile = useMediaQuery({ query: `(max-width: 700px)` });
+
+    const navPop = () => {
+        if (navPopChange === true && isMobile === true) {
+            setNavPopChange(false)
+            console.log("isMobile",isMobile)
+        } else if (navPopChange === false && isMobile === true) {
+            setNavPopChange(true)
+            console.log("isMobile",isMobile)
+        }
+    }
 
     const login2 = async () => {
         await login()
@@ -37,10 +52,11 @@ const Nav = (props) => {
                 "White"
             }}>
             <div className='header'>
-                <h1>Stock Watchlists</h1>
+                <h1 id="appName">Stock Watchlists</h1>
+                <h1 id="hamburger" onClick={navPop}>≡</h1>
             </div>
                 {props.user ?
-                <div className='links'>
+                <div className='links' style={{display: isMobile ? navPopChange ? "none": "flex" : "flex"}}>
                     <Link to='/' style={{color: props.accentColor}}>
                         <h3>Home</h3>
                     </Link>
@@ -77,7 +93,7 @@ const Nav = (props) => {
 
             {
                 props.user ?
-                <div className="user">
+                <div className="user" style={{display: isMobile ? navPopChange ? "flex": "none" : "flex"}}>
                     <p id="displayName">{props.user.displayName}</p>
                     <img src={props.user.photoURL} alt="Account Image" />
                     <Link to="/">
