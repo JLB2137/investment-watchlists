@@ -34,7 +34,7 @@
 .tradingInfo {
     grid-column: 2 / span 1;
     grid-row: 3 / span 1;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .buttonInfo {
@@ -43,4 +43,14 @@
 
 .stockSearch p {
     color: #737886;
+}
+
+
+@media (max-width: 700px) {
+    .stockSearch {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
