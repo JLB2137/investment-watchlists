@@ -54,12 +54,58 @@
 
 @media (max-width: 700px) {
 
+    .Nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+    }
+
     .Nav * {
-        font-size: 15px;
+        padding: 5px;
+    }
+    
+    .header {
+        width: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+    .links {
+        margin: 0 auto;
+        font-style: italic;
+        text-align: center;
+        width: 100%;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .user img {
+        width: 20%;
+    }
+
+    .user p {
+        font-size: 70%;
+    }
+
+    .user button {
+        font-size: 50%;
+        border-radius: 5px;
+        width: 100%;
+        font-weight: bold;
     }
 
     #hamburger {
+        display: flex;
         justify-content: center;
+        align-items: center;
         
     }
 
@@ -67,26 +113,10 @@
         display: none;
     }
     
-    #hamburger {
-        display: flex;
-    }
-
-    .user img {
-        width: 30%;
-    }
-
-    .user {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        margin: 0;
-        width: 100%;
-    }
 
     .links * {
+
         font-size: 10px;
-        padding: 5px;
-        margin-right: 2px;
     }
   
 

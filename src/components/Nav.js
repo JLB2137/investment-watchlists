@@ -54,7 +54,7 @@ const Nav = (props) => {
                 :
                 "White"
             }}>
-            <div className='header'>
+            <div className='header' style={{display: props.user ? "flex": "none"}}>
                 <h1 id="appName">Stock Watchlists</h1>
                 <h1 id="hamburger" onClick={navPop}>≡</h1>
             </div>
