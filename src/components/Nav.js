@@ -11,6 +11,8 @@ const Nav = (props) => {
 
     //determines if the screen is mobile or below 700px width
     const isMobile = useMediaQuery({ query: `(max-width: 1000px)` });
+    const removeHamburger = useMediaQuery({ query: `(max-width: 700px)` });
+
 
     //resets the nav based on mobile to show either login info or page routing
     const navPop = () => {
@@ -54,9 +56,9 @@ const Nav = (props) => {
                 :
                 "White"
             }}>
-            <div className='header' style={{display: props.user ? "flex": "none"}}>
+            <div className='header'>
                 <h1 id="appName">Stock Watchlists</h1>
-                <h1 id="hamburger" onClick={navPop}>≡</h1>
+                <h1 id="hamburger" style={{display: !props.user || props.user && !removeHamburger ? "none": "flex"}} onClick={navPop}>≡</h1>
             </div>
                 {props.user ?
                 <div className='links' style={{display: isMobile ? navPopChange ? "none": "flex" : "flex"}}>
