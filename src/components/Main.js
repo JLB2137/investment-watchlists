@@ -126,7 +126,7 @@ const Main = (props) => {
                 stockResponse = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${stock.symbol}`)
             }
             let stockData = await stockResponse.json()
-            stockData = responseLengthCheck(stockData)
+            stockData = await responseLengthCheck(stockData)
             stockData = {
                 MONGO_ID: stock._id,
                 quoteSource: stockData.quoteSource,
