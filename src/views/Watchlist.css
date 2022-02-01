@@ -41,7 +41,7 @@
     text-align: center;
 }
 
-@media (max-width: 700px) { 
+@media (max-width: 1000px) { 
     .listOfStocks {
         flex-direction: column;
         width: 100%;

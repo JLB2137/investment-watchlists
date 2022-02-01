@@ -10,7 +10,7 @@ const Nav = (props) => {
     const [navPopChange, setNavPopChange] = useState(false)
 
     //determines if the screen is mobile or below 700px width
-    const isMobile = useMediaQuery({ query: `(max-width: 700px)` });
+    const isMobile = useMediaQuery({ query: `(max-width: 1000px)` });
 
     //resets the nav based on mobile to show either login info or page routing
     const navPop = () => {
