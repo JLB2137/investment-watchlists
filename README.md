@@ -1,4 +1,4 @@
-# Investment Watchlist
+# Stock Watchlists
 
 ## Technologies Used
 
