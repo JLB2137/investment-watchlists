@@ -62,7 +62,7 @@ const Main = (props) => {
     //grabs the custom name of the watchlist by the user
     //sends this prop to other pages
     const watchlistNaming = async () => {
-        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${user.uid}`)
+        let response = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/watchlistNaming/${user.uid}`)
         response = await response.json()
         const name = await response[0].watchlistName
         const ID = await response[0]._id
@@ -77,7 +77,7 @@ const Main = (props) => {
 
     //function to confirm if the user is new and set the hook
     const newUserCheck = async () => {
-        let response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${user.uid}`)
+        let response = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/watchlistNaming/${user.uid}`)
         response = await response.json()
         if (response.length === 0) {
             setNewAccount(true)
@@ -105,7 +105,7 @@ const Main = (props) => {
     //in the watchlist database for later pulls
     const removeFromWatchlist = async (tickerID,symbol) => {
         setReady(null)
-        await fetch(`https://investment-watchlists-backend.herokuapp.com/post/${tickerID}`, {
+        await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/post/${tickerID}`, {
             method: "DELETE"
         })
         removeSymbolFromState(symbol)
@@ -116,14 +116,14 @@ const Main = (props) => {
     const createWatchlist = async () => {
         //when running this function reset the stockList
         setStockList([])
-        const response = await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlist/${user.uid}`)
+        const response = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/watchlist/${user.uid}`)
         const data = await response.json()
         await data.forEach(async (stock) => {
             let stockResponse
             try {
-                stockResponse = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${stock.symbol}`)
+                stockResponse = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/stock/${stock.symbol}`)
             } catch(err) {
-                stockResponse = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${stock.symbol}`)
+                stockResponse = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/stock/${stock.symbol}`)
             }
             let stockData = await stockResponse.json()
             stockData = await responseLengthCheck(stockData)

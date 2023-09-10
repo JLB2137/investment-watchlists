@@ -40,7 +40,7 @@ const Settings = (props) => {
         evt.preventDefault()
         if (props.newAccount === true) {
             //if a new name hasn't been created add it using post
-            await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/${props.user.uid}`, {
+            await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/watchlistNaming/${props.user.uid}`, {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -59,7 +59,7 @@ const Settings = (props) => {
             //set the new account variable to false
             props.setNewAccount(false)
         } else {
-            await fetch(`https://investment-watchlists-backend.herokuapp.com/watchlistNaming/rename/${props.watchlistNameID}`, {
+            await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/watchlistNaming/rename/${props.watchlistNameID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "Application/json"

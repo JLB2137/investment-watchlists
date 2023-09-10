@@ -21,7 +21,7 @@ const Stock = (props) => {
 
     //function to add it to the database for pull in watchlist
     const addToWatchlist = async (ticker) => {
-        await fetch('https://investment-watchlists-backend.herokuapp.com/post', {
+        await fetch('https://investment-watchlists-backend-633b63d06062.herokuapp.com/post', {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -41,7 +41,7 @@ const Stock = (props) => {
 
     //grab data returned from backend on stock
     const data = async () => {
-        const response = await fetch(`https://investment-watchlists-backend.herokuapp.com/stock/${props.match.params.symbol}`)
+        const response = await fetch(`https://investment-watchlists-backend-633b63d06062.herokuapp.com/stock/${props.match.params.symbol}`)
         const data = await response.json()
         const stockData = await props.responseLengthCheck(data)
         setStock({
